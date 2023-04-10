@@ -7,21 +7,18 @@ const AuthOutlet = ({ to }) => {
     const { userData, status } = useSelector(
         (state) => state.reducer.loginReducer
     );
+    console.log(userData);
     let auth = false;
+    let reDir = '/signin';
     if (status === REQUEST_STATUS.FULFILLED) {
-        auth = userData.data.register_as === 'Driver' ? true : false;
+        if (userData.data.hasLot === null && to === 'parking-field') {
+            reDir = '/register-lot';
+        } else {
+            auth = true;
+        }
     }
-    return auth ? <Outlet /> : <Navigate to="/signin" />;
+    console.log(reDir);
+    return auth ? <Outlet /> : <Navigate to={reDir} />;
 };
 
 export default AuthOutlet;
-
-export const AdminOutlet = () => {
-    const { status } = useSelector((state) => state.reducer.adminReducer);
-
-    let auth = false;
-    if (status === REQUEST_STATUS.FULFILLED) {
-        auth = true;
-    }
-    return auth ? <Outlet /> : <Navigate to="/admin/login" />;
-};

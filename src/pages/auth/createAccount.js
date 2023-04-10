@@ -3,11 +3,11 @@ import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { FaArrowLeft } from 'react-icons/fa';
 import { newAccount } from '../../state/slices/auth/Signup';
-import { SelectPicker, toaster, Message } from 'rsuite';
+import { toaster, Message } from 'rsuite';
 
 const Signup = () => {
     const dispatch = useDispatch();
-    const [confPass, setConfPass] = useState();
+    const [confPass, setConfPass] = useState('');
     const [next, setNext] = useState(false);
     const [formData, setFormData] = useState({
         username: '',
@@ -54,83 +54,73 @@ const Signup = () => {
                         </i>
                     )}
                     <div>
-                        <form className="">
-                            {!next ? (
-                                <>
-                                    <input
-                                        className={fixedStyle}
-                                        placeholder="Username"
-                                        type="text"
-                                        onChange={(e) =>
-                                            updateValue(
-                                                e.target.value,
-                                                'username'
-                                            )
-                                        }
-                                    />
+                        <div className={next ? 'hidden' : ''}>
+                            <input
+                                className={fixedStyle}
+                                placeholder="Username"
+                                type="text"
+                                onChange={(e) =>
+                                    updateValue(e.target.value, 'username')
+                                }
+                            />
 
-                                    <input
-                                        className={fixedStyle}
-                                        placeholder="email"
-                                        type="text"
-                                        onChange={(e) =>
-                                            updateValue(e.target.value, 'email')
-                                        }
-                                    />
-                                    <input
-                                        className={fixedStyle}
-                                        placeholder="password"
-                                        type="password"
-                                        onChange={(e) =>
-                                            updateValue(
-                                                e.target.value,
-                                                'password'
-                                            )
-                                        }
-                                    />
-                                    <button
-                                        onClick={(next) => setNext(true)}
-                                        className="font-bold h-8 w-full bg-blue-500 text-white rounded-md shadow-lg"
-                                    >
-                                        Next
-                                    </button>
-                                </>
-                            ) : (
-                                <>
-                                    {/* <div className="w-full flex px-2 text-xs justify-end items-center">
+                            <input
+                                className={fixedStyle}
+                                placeholder="email"
+                                type="text"
+                                onChange={(e) =>
+                                    updateValue(e.target.value, 'email')
+                                }
+                            />
+                            <input
+                                className={fixedStyle}
+                                placeholder="password"
+                                type="password"
+                                onChange={(e) =>
+                                    updateValue(e.target.value, 'password')
+                                }
+                            />
+                            <button
+                                onClick={(next) => setNext(true)}
+                                className="font-bold h-8 w-full bg-blue-500 text-white rounded-md shadow-lg"
+                            >
+                                Next
+                            </button>
+                        </div>
+
+                        <div className={!next ? 'hidden' : 'w-full'}>
+                            {/* <div className="w-full flex px-2 text-xs justify-end items-center">
                                     <i className="fa fa-eye hover:text-blue-200 text-blue-100"></i>
                                 </div> */}
+                            {/* {console.log(confPass)} */}
 
-                                    <input
-                                        className={fixedStyle}
-                                        placeholder="confirm password"
-                                        type="password"
-                                        onChange={(e) =>
-                                            setConfPass(e.target.value)
-                                        }
-                                    />
+                            <input
+                                className={fixedStyle}
+                                placeholder="confirm password"
+                                type="password"
+                                value={confPass}
+                                onChange={(e) => setConfPass(e.target.value)}
+                            />
 
-                                    <button
-                                        onClick={(e) => signupHandler(e)}
-                                        className="font-bold h-8 w-full bg-blue-500 text-white rounded-md shadow-lg"
-                                    >
-                                        Sign up
-                                    </button>
-                                </>
-                            )}
+                            <button
+                                onClick={(e) => signupHandler(e)}
+                                className="font-bold h-8 w-full bg-blue-500 text-white rounded-md shadow-lg"
+                            >
+                                Sign up
+                            </button>
+                        </div>
 
-                            <div className="w-full flex px-2 mt-6 font-bold text-xs justify-between mt-2 items-center">
-                                <p className="text-sm text-blue-500">
-                                    Already have account{' '}
-                                </p>
-                                <Link
-                                    to="/signin"
-                                    className="text-sm cursor-pointer hover:text-blue-700 text-blue-600"
-                                >
-                                    Sign in
-                                </Link>
-                            </div>
-                        </form>
+                        <div className="w-full flex px-2 mt-6 font-bold text-xs justify-between mt-2 items-center">
+                            <p className="text-sm text-blue-500">
+                                Already have account{' '}
+                            </p>
+                            <Link
+                                to="/signin"
+                                className="text-sm cursor-pointer hover:text-blue-700 text-blue-600"
+                            >
+                                Sign in
+                            </Link>
+                        </div>
                     </div>
                 </div>
             </div>

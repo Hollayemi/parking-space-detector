@@ -15,7 +15,7 @@ import expireIn from 'redux-persist-transform-expire-in';
 const expirationKey = 'VAWAUFLENCE';
 
 const persistConfig = {
-    key: 'kaj;akmldkmalskdjkj',
+    key: 'kaj;dwfdfsfsf',
     version: 1,
     storage,
     setTimeout: 1000,

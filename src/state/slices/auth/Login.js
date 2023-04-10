@@ -29,6 +29,12 @@ const initialState = {
 const UserSlice = createSlice({
     name: 'parkLogin',
     initialState,
+    reducers: {
+        userLogout: () => {
+            alert('hrtr');
+            return initialState;
+        },
+    },
     extraReducers: {
         [parkLogIn.pending]: (state) => {
             return {
@@ -56,6 +62,8 @@ const UserSlice = createSlice({
 });
 
 // export states
+export const { userLogout } = UserSlice.actions;
+
 export default UserSlice.reducer;
 
 /*
@@ -70,6 +78,7 @@ export const myLogin = (formData, navigate, dispatch) => {
     dispatch(parkLogIn(formData))
         .then(unwrapResult)
         .then((res) => {
+            userLogout();
             toaster.push(
                 <Message showIcon type={res.type}>
                     {res.message}

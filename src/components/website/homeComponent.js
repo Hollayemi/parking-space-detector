@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { FaHamburger } from 'react-icons/fa';
+import { FaHamburger, FaSignOutAlt } from 'react-icons/fa';
 import { Drawer } from 'rsuite';
+import { userLogout } from '../../state/slices/auth/Login';
 
 export const Header = ({ userData }) => {
     const [openNav, setNav] = useState(false);
@@ -15,22 +16,25 @@ export const Header = ({ userData }) => {
                     </h5>
                 </Link>
                 <div className="text-white flex justify-center hidden md:flex top-10">
-                    <MyLinks
-                        link="/pickup-locations"
-                        title="Available Pick-ups"
-                        mystyle={`${
-                            !userData
-                                ? ''
-                                : userData.register_as !== 'Driver' && 'hidden'
-                        }`}
-                    />
                     <MyLinks link="/pickup-locations" title="History" />
-                    <MyLinks link="/signin" title="Login" auth />
-                    <MyLinks
-                        link="/create-account"
-                        title="Create account"
-                        auth
-                    />
+                    <MyLinks link="/parking-field" title="Parking Field" />
+                    {!userData ? (
+                        <>
+                            <MyLinks link="/signin" title="Login" auth />
+                            <MyLinks
+                                link="/create-account"
+                                title="Create account"
+                                auth
+                            />
+                        </>
+                    ) : (
+                        <div
+                            onClick={() => userLogout()}
+                            className={`px-6 text-lg text-white py-1.5 cursor-pointer mx-0.5 rounded-sm hover:text-blue-200`}
+                        >
+                            <FaSignOutAlt />
+                        </div>
+                    )}
                 </div>
                 <i
                     onClick={() => setNav(!openNav)}

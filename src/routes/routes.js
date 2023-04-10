@@ -7,10 +7,10 @@ const ErorrBoundary = LazyLoading(() =>
 );
 const Home = LazyLoading(() => import('../pages/website'));
 const Login = LazyLoading(() => import('../pages/auth/Login'));
-const AvailablePickup = LazyLoading(() =>
-    import('../pages/website/available_pickup')
-);
+const ParkingField = LazyLoading(() => import('../pages/website/parkingField'));
 const CreateAccount = LazyLoading(() => import('../pages/auth/createAccount'));
+const CreateField = LazyLoading(() => import('../pages/auth/addParkingField'));
+
 const ConfirmCode = LazyLoading(() => import('../pages/website/confirmCode'));
 
 //
@@ -30,13 +30,18 @@ const AppRoutes = () => {
         },
         {
             path: '/',
-            element: <AuthOutlet user="student" />,
+            element: <AuthOutlet to="parking-field" />,
             children: [
                 {
-                    path: 'pickup-locations',
-                    element: <AvailablePickup />,
+                    path: 'parking-field',
+                    element: <ParkingField />,
+                    index: true,
                 },
             ],
+        },
+        {
+            path: '/register-lot',
+            element: <CreateField />,
         },
         {
             path: '/confirm-code/:pickId',
