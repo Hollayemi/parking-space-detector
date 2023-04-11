@@ -15,7 +15,7 @@ export const Header = ({ userData }) => {
                         KA-PARK
                     </h5>
                 </Link>
-                <div className="text-white flex justify-center hidden md:flex top-10">
+                <div className="text-white justify-center hidden md:flex top-10">
                     <MyLinks link="/pickup-locations" title="History" />
                     <MyLinks link="/parking-field" title="Parking Field" />
                     {!userData ? (
@@ -53,15 +53,13 @@ export const Header = ({ userData }) => {
                 <div className="h-full bg-red-600">
                     <Drawer.Header className="text-white shadow website-main-bg-image myAfter">
                         <div className="w-full flex relative website-main-bg-imag items-center justify-between px-5">
-                            <h5 className="font-black text-xl ">
-                                AAUA SHUTTLE
-                            </h5>
+                            <h5 className="font-black text-xl ">KA-PARK</h5>
                         </div>
                     </Drawer.Header>
                     <div className="h-full bg-slate-500 text-white px-3">
                         <MyLinks
-                            link="/pickup-locations"
-                            title="Available Pick-ups"
+                            link="/parking-field"
+                            title="Parking Field"
                             mystyle="mb-2"
                         />
                         <MyLinks
@@ -69,19 +67,31 @@ export const Header = ({ userData }) => {
                             title="History"
                             mystyle="mb-2"
                         />
+
                         <div className="flex items-center">
-                            <MyLinks
-                                link="/signin"
-                                mystyle="mb-2"
-                                title="Login"
-                                auth
-                            />
-                            <MyLinks
-                                link="/create-account"
-                                title="Create account"
-                                auth
-                                mystyle="mb-2"
-                            />
+                            {!userData ? (
+                                <>
+                                    <MyLinks
+                                        link="/signin"
+                                        mystyle="mb-2"
+                                        title="Login"
+                                        auth
+                                    />
+                                    <MyLinks
+                                        link="/create-account"
+                                        title="Create account"
+                                        auth
+                                        mystyle="mb-2"
+                                    />
+                                </>
+                            ) : (
+                                <div
+                                    onClick={() => userLogout()}
+                                    className={`px-6 text-lg text-white py-1.5 cursor-pointer mx-0.5 rounded-sm hover:text-blue-200`}
+                                >
+                                    <FaSignOutAlt />
+                                </div>
+                            )}
                         </div>
                     </div>
                 </div>

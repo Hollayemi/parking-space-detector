@@ -17,6 +17,7 @@ const ParkingFieldAccount = () => {
         address: {},
     });
     let newValue = {};
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     function updateValue(newVal, variable) {
         variable === 'lotName' && (newValue = { lotName: newVal });
         variable === 'no_of_zones' && (newValue = { no_of_zones: newVal });
@@ -52,13 +53,13 @@ const ParkingFieldAccount = () => {
                 getAddress(data, dispatch, setAddress);
             });
         }
-    }, [address]);
+    }, [dispatch, updateValue]);
 
     useEffect(() => {
         if (address && address.component) {
             updateValue({ address }, 'address');
         }
-    }, [address]);
+    }, [address, updateValue]);
 
     const ParkingFieldAccountHandler = (e) => {
         e.preventDefault();
