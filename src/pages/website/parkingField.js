@@ -26,14 +26,14 @@ const Home = () => {
                     <div className="flex items-center">
                         <h5
                             onClick={() => setReg(true)}
-                            className="text-white py-2 px-9 mx-3 bg-green-600 text-white font-bold shadow rounded-md shadow-xl cursor-pointer"
+                            className="text-white py-2 px-9 mx-3 bg-green-600 font-bold rounded-md shadow-xl cursor-pointer"
                         >
                             Add new device
                         </h5>
                         <Link to="/register-lot">
                             <h5
                                 onClick={() => setReg(true)}
-                                className="text-white py-2 px-9 mx-3 bg-green-600 text-white font-bold shadow rounded-md shadow-xl cursor-pointer"
+                                className="text-white py-2 px-9 mx-3 bg-green-600 font-bold rounded-md shadow-xl cursor-pointer"
                             >
                                 New Parking Lot
                             </h5>

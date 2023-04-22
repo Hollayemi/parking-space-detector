@@ -7,7 +7,7 @@ const AuthOutlet = ({ to }) => {
     const { userData, status } = useSelector(
         (state) => state.reducer.loginReducer
     );
-    console.log(userData);
+    console.log(userData, 'hghkjh');
     let auth = false;
     let reDir = '/signin';
     if (status === REQUEST_STATUS.FULFILLED) {

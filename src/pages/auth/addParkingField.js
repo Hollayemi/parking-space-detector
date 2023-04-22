@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Loader } from 'rsuite';
@@ -32,7 +33,7 @@ const ParkingFieldAccount = () => {
         formData.address !== '' ? formData.address : null
     );
 
-    console.log(address);
+    console.log(address, 'addtetryh');
     useEffect(() => {
         if (navigator.geolocation) {
             navigator.geolocation.watchPosition((position) => {
@@ -49,21 +50,20 @@ const ParkingFieldAccount = () => {
                     'coords'
                 );
                 // updateValue({lat: '6.59634', lon: '3.34915'}, 'coordinates')
-                console.log(data);
+                console.log(data, 'uoiopi');
                 getAddress(data, dispatch, setAddress);
             });
         }
-    }, [dispatch, updateValue]);
+    }, []);
 
     useEffect(() => {
         if (address && address.component) {
             updateValue({ address }, 'address');
         }
-    }, [address, updateValue]);
+    }, []);
 
     const ParkingFieldAccountHandler = (e) => {
         e.preventDefault();
-
         addParkingField(formData, auth, dispatch);
     };
 
@@ -121,7 +121,7 @@ const ParkingFieldAccount = () => {
                             Create
                         </button>
 
-                        <div className="w-full px-2 mt-6 text-xs mt-2 text-center">
+                        <div className="w-full px-2 mt-6 text-xs text-center">
                             <p className="text-sm text-blue-400">
                                 We are tracking current location as the parking
                                 field location
