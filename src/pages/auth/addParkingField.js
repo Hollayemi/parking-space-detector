@@ -54,13 +54,13 @@ const ParkingFieldAccount = () => {
                 getAddress(data, dispatch, setAddress);
             });
         }
-    }, []);
+    });
 
     useEffect(() => {
         if (address && address.component) {
             updateValue({ address }, 'address');
         }
-    }, []);
+    });
 
     const ParkingFieldAccountHandler = (e) => {
         e.preventDefault();
